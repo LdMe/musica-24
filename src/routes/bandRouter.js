@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import { getAll,getById,create,update,remove } from "../controllers/artistController.js";
+import { getAll,getById,create,update,remove } from "../controllers/bandController.js";
 
 //import artistController from "../controllers/artistController.js";
 
