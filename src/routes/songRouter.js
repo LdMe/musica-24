@@ -1,8 +1,7 @@
 import { Router } from "express";
 
-import { getAll,getById,create,update,remove } from "../controllers/artistController.js";
+import { getAll,getById,create,update,remove } from "../controllers/songController.js";
 
-//import artistController from "../controllers/artistController.js";
 
 const router = Router();
 
@@ -15,10 +14,9 @@ router.get("/",async (req,res)=>{
 router.get("/:id",async(req,res)=>{
     const id =req.params.id;
     const result = await getById(id);
-    console.log("conseguir artista por id",result);
+    console.log("conseguir cancion por id",result);
     res.send(result);
 })
 
 
 export default router;
-
