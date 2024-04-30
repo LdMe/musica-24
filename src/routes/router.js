@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import artistRouter from "./artistRouter.js";
 import bandRouter from "./bandRouter.js";
+import albumRouter from "./albumRouter.js";
 
 const router = Router();
 
@@ -19,7 +20,9 @@ router.get("/form",(req,res)=>{
     const formString = `
     <form action="/search" method="get">
         <label for="q">pregunta</label>
-        <input type="text" name="q" id="q">
+        <input type="text" name="q" id="q" required>
+        <label for="name">pregunta name</label>
+        <input type="text" name="name" id="name" required>
         <button type="submit">enviar</button>
     </form> 
     `
@@ -27,10 +30,9 @@ router.get("/form",(req,res)=>{
 })
 
 router.use("/artist",artistRouter);
-/* router.post("/search",(req,res)=>{
-    const {}
-}) */
 
 router.use("/band",bandRouter);
+
+router.use("/album",albumRouter);
 
 export default router;
