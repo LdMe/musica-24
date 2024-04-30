@@ -3,6 +3,7 @@ import { Router } from "express";
 import artistRouter from "./artistRouter.js";
 import bandRouter from "./bandRouter.js";
 import albumRouter from "./albumRouter.js";
+import genreRouter from "./genreRouter.js";
 
 const router = Router();
 
@@ -34,5 +35,7 @@ router.use("/artist",artistRouter);
 router.use("/band",bandRouter);
 
 router.use("/album",albumRouter);
+
+router.use("/genre",genreRouter);
 
 export default router;
