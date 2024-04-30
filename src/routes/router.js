@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import artistRouter from "./artistRouter.js";
+import genreRouter from "../controllers/genreRouter.js";
 
 const router = Router();
 
@@ -29,5 +30,6 @@ router.use("/artist",artistRouter);
 /* router.post("/search",(req,res)=>{
     const {}
 }) */
+router.use("/genre",genreRouter);
 
 export default router;
