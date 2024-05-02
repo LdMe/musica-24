@@ -1,0 +1,11 @@
+body{
+    background-color:#fabada
+}
+
+.layout-title{
+    background-color:black;
+    color:white;
+}
+.error{
+    color:red;
+}

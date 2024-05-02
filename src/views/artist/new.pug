@@ -1,0 +1,12 @@
+extends ../layout
+
+block content 
+    form(action="/artist", method="post") 
+        label(for="name") Nombre 
+        input(id="name" type="text" name="name") 
+        label(for="is_alive") Vive?
+        input#is_alive(type="checkbox", name="is_alive")
+        label(for="birth_date")
+        input#birth_date(type="date", name="birth_date")  
+        button(type="submit") Crear
+

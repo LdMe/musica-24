@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+    h1 lista de artistas
+    if error 
+        p(class="error")= error
+    if data
+        ul
+            each artist in data 
+                li
+                    a(href="/artist/"+artist.artist_id)= artist.name
+                    a(href=`/artist/${artist.artist_id}/update`) 
+                        button Editar
+                    form(action=`/artist/${artist.artist_id}/remove`, method="post") 
+                        button(type="submit") Borrar
+    a(href="/artist/new")
+        button Nuevo

@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+    if error 
+        p(class="error")= error
+    if artist 
+        h2= artist.name 
+        p Vive: #{artist.is_alive==1 ? 'si': 'no'} 
+        if artist.birth_date 
+            p Fecha de nacimiento: #{artist.birth_date}
+    a(href="/artist")
+        button Volver

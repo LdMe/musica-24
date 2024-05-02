@@ -1,0 +1,15 @@
+extends ../layout
+
+block content 
+    if error 
+        p(class="error")= error
+    if artist
+        form(action="/artist/"+artist.artist_id, method="post") 
+            label(for="name") Nombre 
+            input(id="name" type="text" name="name" value=artist.name) 
+            label(for="is_alive") Vive?
+            input#is_alive(type="checkbox", name="is_alive" checked=artist.is_alive ? true:false)
+            label(for="birth_date")
+            input#birth_date(type="date", name="birth_date" value=artist.birth_date)  
+            button(type="submit") Guardar
+

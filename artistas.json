@@ -1,0 +1,20 @@
+[
+	{
+		"artist_id" : 1,
+		"name" : "Lady Gaga",
+		"birth_date" : null,
+		"is_alive" : 1
+	},
+	{
+		"artist_id" : 2,
+		"name" : "Evaristo",
+		"birth_date" : null,
+		"is_alive" : 1
+	},
+	{
+		"artist_id" : 3,
+		"name" : "Nacho",
+		"birth_date" : null,
+		"is_alive" : 0
+	}
+]
