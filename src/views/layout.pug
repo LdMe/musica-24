@@ -1,0 +1,13 @@
+html 
+    head 
+        link(rel="stylesheet" href="/css/styles.css")
+        block title 
+            title Hola mundo
+
+    body
+        include navbar
+        block content 
+            h1(
+                class="layout-title"
+                id="titulo"
+            ) Esto es el layout
