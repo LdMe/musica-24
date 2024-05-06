@@ -17,6 +17,6 @@ app.use(express.urlencoded({extended:true})); // permite leer el body de llamada
 
 app.use("/",router);
 
-app.listen(process.env.APP_PORT,()=>{
+app.listen(3000,()=>{
     console.log("Servidor en marcha en el puerto "+process.env.APP_PORT);
 })

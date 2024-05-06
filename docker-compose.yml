@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: ${MYSQL_HOST}
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - ${MYSQL_PORT}:3306
+    volumes:
+      - ./db/data:/var/lib/mysql
+      - ./db/scripts:/docker-entrypoint-initdb.d
+  backend:
+    build: .
+    container_name: ${APP_HOST}
+    restart: unless-stopped
+    ports: 
+      - ${APP_PORT}:3000
+    depends_on:
+      - db
+    volumes:
+      - ./:/app
+      - node_modules_musica:/app/node_modules
+      
+volumes:
+  node_modules_musica:
