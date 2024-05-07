@@ -1,78 +1,77 @@
-const artists = [
-	{
-		"artist_id" : 1,
-		"name" : "Lady Gaga",
-		"birth_date" : null,
-		"is_alive" : 1
-	},
-	{
-		"artist_id" : 2,
-		"name" : "Evaristo",
-		"birth_date" : null,
-		"is_alive" : 1
-	},
-	{
-		"artist_id" : 3,
-		"name" : "Nacho",
-		"birth_date" : null,
-		"is_alive" : 0
-	}
-]
-async function getAll(){
-    return {data:artists}
+import artistModel from "../../models/artistModel.js";
+
+async function getAll() {
+    try {
+        const artists = await artistModel.findAll();
+        return { data: artists };
+    }
+    catch (error) {
+        console.error(error);
+        return { error: error };
+    }
 }
 
-async function getById(id){
-    const artist = artists.find(artist => artist.artist_id === id);
-    if(!artist){
-        return {error:"El artista no existe"};
+async function getById(id) {
+    try {
+        const artist = await artistModel.findByPk(id);
+        if (!artist) {
+            return { error: "El artista no existe" };
+        }
+        return { data: artist };
     }
-    return {data:artist};
+    catch (error) {
+        console.error(error);
+        return { error };
+    }
+
 }
 
-async function create(artistData){
-    const {birth_date,is_alive,name} = artistData;
-    // get max artist_id from artists
-    if(!name ){
-        return {error:"Los artistas deben tener nombre!"};
+async function create(artistData) {
+    try {
+        const newArtist = await artistModel.create(artistData);
+        console.log("new artist",newArtist);
+        return {data:newArtist};
+    } catch (error) {
+        console.error(error);
+        return {error}
     }
-    const maxId = Math.max(...artists.map(artist => artist.artist_id));
-    const newId= maxId + 1;
-    const newArtist = {
-        artist_id:newId,
-        name,
-        is_alive,
-        birth_date
-    };
-    artists.push(newArtist);
-    return {data:newArtist};
+
+
 }
 
-async function update(id,artistData){
-    const {birth_date,is_alive,name} = artistData;
-    const artist = artists.find(artist=>artist.artist_id===id);
-    if(!artist){
-        return {error:"No se puede modificar un artista que no existe, mazapan!"};
+async function update(id, artistData) {
+    try {
+        const { birth_date, is_alive, name } = artistData;
+        const artist  = await artistModel.findByPk(id);
+        if (!artist) {
+            return { error: "No se puede modificar un artista que no existe, mazapan!" };
+        }
+        if (birth_date) {
+            artist.birth_date = birth_date;
+        }
+        if (is_alive !== null && is_alive !== undefined) {
+            artist.is_alive = is_alive
+        }
+        if (name) {
+            artist.name = name;
+        }
+        const newArtist = await artistModel.update(id,artist);
+        return {data:newArtist};
+    } catch (error) {
+        console.error(error);
+        return {error}
     }
-    if(birth_date){
-        artist.birth_date = birth_date;
-    }
-    if(is_alive !== null && is_alive!== undefined){
-        artist.is_alive=is_alive
-    }
-    if(name){
-        artist.name = name;
-    }
-    return {data:artist};
+   
 }
 
-async function remove(id){
-    const artistIndex = artists.findIndex(artist=>artist.artist_id===id);
-    if(artistIndex === -1){
-        return {error:"no se pueden borrar artistas que no existen"}
+async function remove(id) {
+    try {
+        const result = await artistModel.remove(id);
+        return {data:result};
+    } catch (error) {
+        console.error(error);
     }
-    const deletedArtist = artists.splice(artistIndex,1);
-    return {data:deletedArtist};
+    
 }
 
 export {
