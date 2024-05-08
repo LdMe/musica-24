@@ -1,7 +1,7 @@
 
 async function getAll(){
     return "Mostramos todas las bandas";
-}
+} 
 
 async function getById(id){
     return `Mostramos banda con id ${id}`;
