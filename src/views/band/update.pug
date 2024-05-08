@@ -1,0 +1,12 @@
+extends ../layout
+
+block content 
+    if error 
+        p(class="error")= error
+    if band
+        form(action="/band/"+band.artist_id, method="post") 
+            label(for="name") Nombre 
+            input(id="name" type="text" name="name" value=band.name) 
+            label(for="creation_date")
+            input#creation_date(type="date", name="creation_date" value=band.creation_date)  
+            button(type="submit") Guardar

@@ -1,0 +1,17 @@
+extends ../layout 
+
+block content 
+    h1 lista de Bandas 
+    if error 
+        p(class="error")= error 
+    if data 
+        ul 
+            each band in data 
+                li 
+                    a(href="/band"+band.band_id)= band.name 
+                    a(href=`/band/${band.band_id}/update`)
+                        button Edit 
+                    form(action=`/band/${band.band_id}/remove`, method="post")
+                        button(type="submit") Delete 
+    a(href="/band/new")
+        button New Band

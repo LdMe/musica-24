@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+    if error 
+        p(class="error")= error
+    if band 
+        h2= band.name 
+        if band.creation_date 
+            p Fecha de fundacion: #{band.creation_date}
+    a(href="/band")
+        button Volver

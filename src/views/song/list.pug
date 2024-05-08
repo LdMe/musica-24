@@ -1,0 +1,17 @@
+extends ../layout 
+
+block content 
+    h1 lista de canciones 
+    if error 
+        p(class="error")= error 
+    if data 
+        ul 
+            each song in data 
+                li 
+                    a(href="/song"+song.song_id)= song.title 
+                    a(href=`/song/${song.song_id}/update`)
+                        button Edit 
+                    form(action=`/song/${song.song_id}/remove`, method="post")
+                        button(type="submit") Delete 
+    a(href="/song/new")
+        button New Song

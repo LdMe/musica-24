@@ -1,0 +1,10 @@
+extends ../layout
+
+block content 
+    form(action="/song", method="post") 
+        label(for="title") Titulo 
+        input(id="title" type="text" name="title") 
+        label(for="length") Duracion
+        input#length(type="integer", name="length")  
+        button(type="submit") Crear
+
