@@ -1,8 +1,8 @@
 import artistModel from "../../models/artistModel.js";
-
+import songModel from "../../models/songModel.js";
 async function getAll() {
     try {
-        const artists = await artistModel.findAll();
+        const artists = await artistModel.findAll({include:["bandas","canciones"]});
         return { data: artists };
     }
     catch (error) {
@@ -41,21 +41,17 @@ async function create(artistData) {
 
 async function update(id, artistData) {
     try {
-        const { birth_date, is_alive, name } = artistData;
-        const artist  = await artistModel.findByPk(id);
-        if (!artist) {
-            return { error: "No se puede modificar un artista que no existe, mazapan!" };
+        if(artistData.name === ""){
+            delete artistData.name;
         }
-        if (birth_date) {
-            artist.birth_date = birth_date;
-        }
-        if (is_alive !== null && is_alive !== undefined) {
-            artist.is_alive = is_alive
-        }
-        if (name) {
-            artist.name = name;
-        }
-        const newArtist = await artistModel.update(id,artist);
+        const newArtist = await artistModel.update(artistData,
+            {
+                where: 
+                {
+                    artist_id:id
+                }
+            }
+        );
         return {data:newArtist};
     } catch (error) {
         console.error(error);

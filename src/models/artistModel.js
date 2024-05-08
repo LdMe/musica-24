@@ -1,60 +1,43 @@
-import connection from "../config/mysql.js";
+import { DataTypes } from "sequelize";
+import sequelize from "../config/sequelize.js";
 
-async function findAll() {
-    console.log("connection",connection)
-    const queryString="SELECT * FROM artist";
-    const [rows,fields] =await connection.query(queryString);
-    console.log("find all");
-    console.log("rows",rows);
-    console.log("fields",fields);
-    return rows;
-}
+import bandModel from "./bandModel.js";
 
-async function findByPk(pk){
-    const queryString="SELECT * FROM artist WHERE artist_id=?";
-    const [rows,fields] = await connection.query(queryString,[pk]);
-    console.log("find by pk");
-    console.log("rows",rows);
-    console.log("fields",fields);
-    return rows[0];
-}
+const artistModel = sequelize.define("artist",
+    {
+        artist_id:{
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull:false,
+            primaryKey:true,
+            autoIncrement:true
+        },
+        name: {
+            type:DataTypes.STRING(45),
+            allowNull:false
+        },
+        is_alive: {
+            type:DataTypes.BOOLEAN,
+            defaultValue:true
+        },
+        birth_date:{
+            type:DataTypes.DATE
+        }
+    }
+)
 
-async function create(data){
-    const isAlive = data.is_alive === 'on' ? 1 : 0;
-    const queryString = "INSERT INTO artist (name,is_alive,birth_date) VALUES (?,?,?)";
-    const [rows,fields] = await connection.query(queryString,[data.name,isAlive,data.birth_date]);
-    console.log("create");
-    console.log("rows",rows);
-    console.log("fields",fields);
-    return rows;
-}
+artistModel.belongsToMany(bandModel,
+    {
+        through:"band_has_artist",
+        as:"bandas",
+        foreignKey:"band_id"
+    }
+);
+bandModel.belongsToMany(artistModel,
+    {
+        through:"band_has_artist",
+        as:"artistas",
+        foreignKey:"artist_id"
+    }
+);
 
-
-async function update(pk,data){
-    const isAlive = data.is_alive === 'on' ? 1 : 0;
-    const queryString = "UPDATE artist SET name=?, is_alive=?, birth_date=? WHERE artist_id=?";
-    const [rows,fields] = await connection.query(queryString,[data.name,isAlive,data.birth_date,pk]);
-    console.log("update");
-    console.log("rows",rows);
-    console.log("fields",fields);
-    return rows;
-}
-
-async function remove(pk){
-    const queryString="DELETE FROM artist WHERE artist_id=?";
-    const [rows,fields] = await connection.query(queryString,[pk]);
-    console.log("delete");
-    console.log("rows",rows);
-    console.log("fields",fields);
-    return rows;
-}
-
-export default {
-    findAll,
-    findByPk,
-    create,
-    update,
-    remove
-
-}
-
+export default artistModel;
