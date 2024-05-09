@@ -29,14 +29,14 @@ artistModel.belongsToMany(bandModel,
     {
         through:"band_has_artist",
         as:"bandas",
-        foreignKey:"band_id"
+        foreignKey:"artist_id"
     }
 );
 bandModel.belongsToMany(artistModel,
     {
         through:"band_has_artist",
         as:"artistas",
-        foreignKey:"artist_id"
+        foreignKey:"band_id"
     }
 );
 

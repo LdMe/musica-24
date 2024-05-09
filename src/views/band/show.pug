@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+    if error 
+        p(class="error")= error
+    if band 
+        h2= band.name 
+        
+        if band.creation_date 
+            p Fecha de creación: #{band.creation_date}
+        if band.artistas 
+            p Artistas: 
+            ul
+                each artista in band.artistas 
+                    li
+                        a(href=`/artist/${artista.artist_id}`)= artista.name
+                        form(action=`/band/${band.band_id}/remove-artist`, method="post") 
+                            input(type="hidden", name="artist_id", value=artista.artist_id)
+                            button(type="submit") Borrar
+        form(action="/band/"+band.band_id+"/add-artist", method="post") 
+            label(for="artist_id") Artista
+            select(name="artist_id")
+                each artista in artists 
+                    if !band.artistas.find(a => a.artist_id == artista.artist_id)
+                        option(value=artista.artist_id)= artista.name
+            button(type="submit") Añadir artista
+    a(href="/band")
+        button Volver

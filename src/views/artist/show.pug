@@ -8,5 +8,12 @@ block content
         p Vive: #{artist.is_alive==1 ? 'si': 'no'} 
         if artist.birth_date 
             p Fecha de nacimiento: #{artist.birth_date}
+        if artist.bandas 
+            p Bandas: 
+            ul
+                each band in artist.bandas 
+                    li
+                        a(href=`/band/${band.band_id}`)= band.name
+                        
     a(href="/artist")
         button Volver

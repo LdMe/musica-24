@@ -13,7 +13,8 @@ async function getAll() {
 
 async function getById(id) {
     try {
-        const artist = await artistModel.findByPk(id);
+        
+        const artist = await artistModel.findByPk(id,{include:["bandas","canciones"]});
         if (!artist) {
             return { error: "El artista no existe" };
         }
@@ -71,6 +72,8 @@ async function remove(id) {
     }
     
 }
+
+
 
 export {
     getAll,

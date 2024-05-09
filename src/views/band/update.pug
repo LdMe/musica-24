@@ -1,0 +1,17 @@
+extends ../layout
+
+block content 
+    if error 
+        p(class="error")= error
+    if band 
+        form(action="/band/"+band.band_id, method="post") 
+            label(for="name") Nombre
+            input(type="text", name="name", value=band.name)
+            label(for="creation_date") Fecha de creación
+            input(type="date", name="creation_date", value=band.creation_date)
+            button(type="submit") Actualizar
+        a(href="/band")
+            button Volver
+    else 
+        p No se encontró la banda
+
