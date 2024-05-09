@@ -18,8 +18,9 @@ async function createForm(req,res){
 
 async function create(req,res){
     const {name,is_alive,birth_date} = req.body;
+    const isAlive = is_alive === "on" ? 1 : 0;
     //const {name,is_alive,birth_date} = req.query;
-    const {error,data} = await artistController.create({name,is_alive,birth_date});
+    const {error,data} = await artistController.create({name,isAlive,birth_date});
     //res.json({error,data});
     res.redirect("/artist");
 }
