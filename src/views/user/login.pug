@@ -1,0 +1,12 @@
+extends ../layout
+
+block content 
+    h1 Login
+    if error 
+        p(class="error")=error
+    form(action="/login", method="post") 
+        label(for="email") email
+        input#email(type="email", name="email") 
+        label(for="password") contraseña
+        input#password(type="password", name="password") 
+        button(type="submit") Login

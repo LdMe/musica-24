@@ -1,0 +1,14 @@
+extends ../layout
+
+block content 
+    h1 Register
+    if error 
+        p(class="error")=error
+    form(action="/register", method="post") 
+        label(for="email") email
+        input#email(type="email", name="email") 
+        label(for="password") contraseña
+        input#password(type="password", name="password") 
+        label(for="passwordRepeat") repetir contraseña
+        input#passwordRepeat(type="password", name="passwordRepeat") 
+        button(type="submit") Register
