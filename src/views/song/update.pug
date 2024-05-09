@@ -1,0 +1,12 @@
+extends ../layout
+
+block content 
+    if error 
+        p(class="error")= error
+    if song
+        form(action="/song/"+song.artist_id, method="post") 
+            label(for="title") Nombre 
+            input(id="title" type="text" title="title" value=song.title) 
+            label(for="length")
+            input#length(type="number", name="length" value=song.length)  
+            button(type="submit") Guardar

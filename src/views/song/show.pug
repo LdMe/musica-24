@@ -1,0 +1,10 @@
+extends ../layout
+
+block content
+    if error 
+        p(class="error")= error
+    if song 
+        h2= song.title
+        p Duracion: #{song.length}  
+    a(href="/song")
+        button Volver

@@ -1,0 +1,10 @@
+extends ../layout
+
+block content 
+    form(action="/band", method="post") 
+        label(for="name") Nombre 
+        input(id="name" type="text" name="name") 
+        label(for="creation_date") Fecha de Fundacion
+        input#birth_date(type="date", name="creation_date")  
+        button(type="submit") Crear
+

@@ -1,11 +1,27 @@
 USE musica;
 
 INSERT INTO artist(artist_id,name,is_alive)
+
+
 VALUES (1,"Lady Gaga",1),(2,"Evaristo",1),(3,"Nacho",0);
 
 INSERT INTO band(band_id,name) VALUES(1,"Monsters"),(2,"Gatillazo"),(3,"Cicatriz");
 
 INSERT INTO genre(name) VALUES("Pop"),("Punk"),("Rock");
+
+INSERT INTO `musica`.`song` (`title`, `length`)
+VALUES
+    ('Bohemian Rhapsody', 355),
+    ('Hotel California', 391),
+    ('Stairway to Heaven', 482),
+    ('Imagine', 185),
+    ('Smells Like Teen Spirit', 301),
+    ('Hey Jude', 431),
+    ('Yesterday', 156),
+    ('Billie Jean', 294),
+    ('Like a Rolling Stone', 366),
+    ('Purple Haze', 166);
+
 
 INSERT INTO band_has_artist (band_id,artist_id) 
 VALUES (1,1),(2,2),(3,3);

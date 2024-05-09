@@ -1,10 +1,10 @@
 import mysql from "mysql2/promise";
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config();  
 
 async function createConnection(){
-    const connection = await mysql.createConnection(
+    const connection = await mysql.createConnection( 
         {
             host: process.env.MYSQL_HOST,
             port: 3306,
