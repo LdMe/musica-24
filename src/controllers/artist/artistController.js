@@ -62,10 +62,12 @@ async function update(id, artistData) {
 
 async function remove(id) {
     try {
-        const result = await artistModel.remove(id);
-        return {data:result};
+        const artist = await artistModel.findByPk(id);
+        await artist.destroy();
+        return {data:artist};
     } catch (error) {
         console.error(error);
+        return {error}
     }
     
 }
