@@ -9,18 +9,19 @@ INSERT INTO band(band_id,name) VALUES(1,"Monsters"),(2,"Gatillazo"),(3,"Cicatriz
 
 INSERT INTO genre(name) VALUES("Pop"),("Punk"),("Rock");
 
-INSERT INTO song(song_id, title, length, composer_id, genre_id) 
-VALUES 
-    (1, 'Bohemian Rhapsody', '5:55', 1, 1),
-    (2, 'Stairway to Heaven', '8:02', 2, 2),
-    (3, 'Imagine', '3:03', 3, 3),
-    (4, 'Hotel California', '6:30', 4, 4),
-    (5, 'Hey Jude', '7:11', 5, 5),
-    (6, 'Smells Like Teen Spirit', '5:01', 6, 6),
-    (7, 'Like a Rolling Stone', '6:13', 7, 7),
-    (8, 'Yesterday', '2:05', 8, 8),
-    (9, 'What a Wonderful World', '2:21', 9, 9),
-    (10, 'Sound of Silence', '3:05', 10, 10);
+INSERT INTO `musica`.`song` (`title`, `length`)
+VALUES
+    ('Bohemian Rhapsody', 355),
+    ('Hotel California', 391),
+    ('Stairway to Heaven', 482),
+    ('Imagine', 185),
+    ('Smells Like Teen Spirit', 301),
+    ('Hey Jude', 431),
+    ('Yesterday', 156),
+    ('Billie Jean', 294),
+    ('Like a Rolling Stone', 366),
+    ('Purple Haze', 166);
+
 
 INSERT INTO band_has_artist (band_id,artist_id) 
 VALUES (1,1),(2,2),(3,3);

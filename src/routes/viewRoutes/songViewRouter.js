@@ -1,4 +1,4 @@
-import { Router} from "express";
+import { Router } from "express";
 
 import songViewController from "../../controllers/song/songViewController.js";
 
@@ -17,3 +17,4 @@ router.post("/:id/remove",songViewController.remove);
 
 
 export default router;
+

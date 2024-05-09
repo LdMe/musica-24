@@ -16,7 +16,7 @@ router.get("/",async (req,res)=>{
     res.json({bands,artists,songs});
 })
 router.use("/api",apiRouter);
-router.use("/",viewRouter);
+router.use("/",viewRouter); 
 
 
 export default router;
