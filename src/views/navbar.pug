@@ -7,10 +7,12 @@ nav(class="navbar")
             a(href="/artist") Artistas 
         li(class="nav-link") 
             a(href="/band") Bandas
-        li(class="nav-link") 
-            a(href="/login") Login
-        li(class="nav-link") 
-            a(href="/register") Registro
-        li(class="nav-link") 
-            form(action="/logout", method="post") 
-                button(type="submit") Logout
+        if !session.user
+            li(class="nav-link") 
+                a(href="/login") Login
+            li(class="nav-link") 
+                a(href="/register") Registro
+        else
+            li(class="nav-link") 
+                form(action="/logout", method="post") 
+                    button(type="submit") Logout
