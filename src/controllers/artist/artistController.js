@@ -1,5 +1,14 @@
 import artistModel from "../../models/artistModel.js";
 import songModel from "../../models/songModel.js";
+/**
+ * @module controllers/artist/artistController
+ */
+
+/**
+ * Retrieves all artists from the database including associated bands and songs.
+ *
+ * @return {Object} The data object containing the artists if successful, otherwise an error object.
+ */
 async function getAll() {
     try {
         const artists = await artistModel.findAll({include:["bandas","canciones"]});
@@ -11,6 +20,12 @@ async function getAll() {
     }
 }
 
+
+/**
+ * Get artist by ID from the database.
+ * @param {Number} id - The ID of the artist to retrieve.
+ * @returns {Object} The artist data if found, otherwise an error object.
+ */
 async function getById(id) {
     try {
         
@@ -27,6 +42,13 @@ async function getById(id) {
 
 }
 
+
+/**
+ * Creates a new artist record in the database using the provided artist data.
+ *
+ * @param {Object} artistData - The data of the artist to be created.
+ * @return {Object} The newly created artist data.
+ */
 async function create(artistData) {
     try {
         const newArtist = await artistModel.create(artistData);

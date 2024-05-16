@@ -12,6 +12,6 @@ block content
                     a(href=`/artist/${artist.artist_id}/update`) 
                         button Editar
                     form(action=`/artist/${artist.artist_id}/remove`, method="post") 
-                        button(type="submit") Borrar
+                        button(type="submit" class="confirm") Borrar
     a(href="/artist/new")
         button Nuevo
